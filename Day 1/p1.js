@@ -26,4 +26,5 @@ function processLock(lockPosition, dial, direction) {
 
   return lockPosition;
 }
+
 console.log("result is: ", result);
