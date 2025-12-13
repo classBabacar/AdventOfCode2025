@@ -25,7 +25,7 @@ function checkInvalidIds(start, end) {
     let stringNumber = num.toString();
     let substringDistance = 1;
     for (i of stringNumber) {
-      let subId = stringNumber.substring(0, substringDistance);
+      let subId = stringNumber.substring(0, substringDistance++);
       let emptyId = "";
       let addsHappened = 0;
 
@@ -33,7 +33,6 @@ function checkInvalidIds(start, end) {
         addsHappened++;
         emptyId = emptyId + subId;
       }
-      ++substringDistance;
 
       let IdAsDigit = Number(emptyId);
       if (
