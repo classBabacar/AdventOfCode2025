@@ -14,25 +14,25 @@ input.forEach((line) => {
 function mainLoop(grid) {
   let result;
   do {
-    let positions = [];
+    const positions = [];
     for (let row = 0; row < grid.length; row++) {
-      for (col = 0; col < grid[row].length; ++col) {
-        if (grid[row][col] == "@") {
+      for (let col = 0; col < grid[row].length; col++) {
+        if (grid[row][col] === "@") {
           positions.push([row, col]);
         }
       }
     }
 
     [grid, result] = bfs(positions, grid);
-  } while (result != 0);
+  } while (result != 0); // if there was no guarantee terminal state then this would need to be changed
 
   const removedPapers = scanArrayForBadPapers(grid);
-  console.log("Rolls of paper accessed: ", removedPapers);
+  console.log("Rolls of papers removed: ", removedPapers);
 }
 
 function bfs(positions, grid) {
   let result = 0;
-  let directions = [
+  const directions = [
     [-1, 0], // up
     [1, 0], // down
     [0, 1], // right
@@ -43,7 +43,7 @@ function bfs(positions, grid) {
     [1, -1], // down left
   ];
 
-  let positionsToBeRemoved = [];
+  const positionsToBeRemoved = [];
   while (typeof (i = positions.shift()) !== "undefined") {
     const row = i[0];
     const col = i[1];
@@ -61,7 +61,7 @@ function bfs(positions, grid) {
       )
         continue;
 
-      if (grid[newRow][newCol] == "@") surrounding++;
+      if (grid[newRow][newCol] === "@") surrounding++;
     }
 
     if (surrounding < 4) {
@@ -82,8 +82,8 @@ function bfs(positions, grid) {
 function scanArrayForBadPapers(grid) {
   let count = 0;
   for (let row = 0; row < grid.length; row++) {
-    for (col = 0; col < grid[row].length; ++col) {
-      if (grid[row][col] == "x") {
+    for (let col = 0; col < grid[row].length; col++) {
+      if (grid[row][col] === "x") {
         count++;
       }
     }
