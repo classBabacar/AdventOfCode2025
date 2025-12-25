@@ -1,0 +1,94 @@
+const { input } = require("./input");
+
+const grid = [];
+
+input.forEach((line) => {
+  const row = [];
+
+  for (char of line) {
+    row.push(char);
+  }
+  grid.push(row);
+});
+
+function mainLoop(grid) {
+  let result;
+  do {
+    let positions = [];
+    for (let row = 0; row < grid.length; row++) {
+      for (col = 0; col < grid[row].length; ++col) {
+        if (grid[row][col] == "@") {
+          positions.push([row, col]);
+        }
+      }
+    }
+
+    [grid, result] = bfs(positions, grid);
+  } while (result != 0);
+
+  const removedPapers = scanArrayForBadPapers(grid);
+  console.log("Rolls of paper accessed: ", removedPapers);
+}
+
+function bfs(positions, grid) {
+  let result = 0;
+  let directions = [
+    [-1, 0], // up
+    [1, 0], // down
+    [0, 1], // right
+    [0, -1], // left
+    [-1, -1], // up left
+    [-1, 1], // up right
+    [1, 1], // down right
+    [1, -1], // down left
+  ];
+
+  let positionsToBeRemoved = [];
+  while (typeof (i = positions.shift()) !== "undefined") {
+    const row = i[0];
+    const col = i[1];
+
+    let surrounding = 0;
+    for (direction of directions) {
+      const newRow = row + direction[0];
+      const newCol = col + direction[1];
+
+      if (
+        newRow < 0 ||
+        newCol < 0 ||
+        newRow >= grid.length ||
+        newCol >= grid[0].length
+      )
+        continue;
+
+      if (grid[newRow][newCol] == "@") surrounding++;
+    }
+
+    if (surrounding < 4) {
+      result++;
+      positionsToBeRemoved.push([row, col]);
+    }
+  }
+
+  while (typeof (i = positionsToBeRemoved.shift()) !== "undefined") {
+    const row = i[0];
+    const col = i[1];
+    grid[row][col] = "x"; // setting it to some dummy value for scanning, can also create global variable instead
+  }
+
+  return [grid, result];
+}
+
+function scanArrayForBadPapers(grid) {
+  let count = 0;
+  for (let row = 0; row < grid.length; row++) {
+    for (col = 0; col < grid[row].length; ++col) {
+      if (grid[row][col] == "x") {
+        count++;
+      }
+    }
+  }
+  return count;
+}
+
+mainLoop(grid);
