@@ -1,7 +1,6 @@
 const { input } = require("./input");
 
 const intervals = [];
-const ingredientsIds = [];
 let emptyLine = false;
 
 input.forEach((line) => {
@@ -18,7 +17,7 @@ input.forEach((line) => {
     const end = Number(startEndRanges[1]);
     intervals.push([start, end]);
   } else {
-    ingredientsIds.push(Number(line));
+    return;
   }
 });
 
