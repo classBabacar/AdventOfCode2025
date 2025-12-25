@@ -67,10 +67,11 @@ function getFreshIngredients(sortedIntervals, ingredientsIds) {
   let ingredientsId;
 
   for (let i = 0; i < ingredientsIds.length; ++i) {
+    ingredientsId = ingredientsIds[i];
+
     for (let j = 0; j < sortedIntervals.length; ++j) {
       leftRange = sortedIntervals[j][0];
       rightRange = sortedIntervals[j][1];
-      ingredientsId = ingredientsIds[i];
       if (ingredientsId >= leftRange && ingredientsId <= rightRange) {
         result++;
       }
