@@ -2,7 +2,7 @@ const { input } = require("./input");
 
 const grid = [];
 input.forEach((line) => {
-  let row = [];
+  const row = [];
 
   for (char of line) {
     row.push(char);
