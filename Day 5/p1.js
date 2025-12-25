@@ -33,7 +33,7 @@ function mainLoop(intervals, ingredientsIds) {
 }
 
 /*
- [ 3, 5 ], [ 10, 14 ], [ 16, 20 ], [ 12, 18 ]
+ [ 3, 5 ], [ 10, 14 ],  [ 12, 18 ], [ 16, 20 ]
   converted to (simplification for intervals) -- reduce overlapping ranges
  [ 3 , 5 ], [ 10, 20 ]
 */
