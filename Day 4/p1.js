@@ -13,7 +13,7 @@ input.forEach((line) => {
 function mainLoop(grid) {
   const positions = [];
   for (let row = 0; row < grid.length; row++) {
-    for (col = 0; col < grid[row].length; ++col) {
+    for (let col = 0; col < grid[row].length; col++) {
       if (grid[row][col] === "@") {
         positions.push([row, col]);
       }
@@ -38,13 +38,13 @@ function bfs(positions, grid) {
   ];
 
   while (typeof (i = positions.shift()) !== "undefined") {
-    let row = i[0];
-    let col = i[1];
+    const row = i[0];
+    const col = i[1];
 
     let surrounding = 0;
     for (direction of directions) {
-      let newRow = row + direction[0];
-      let newCol = col + direction[1];
+      const newRow = row + direction[0];
+      const newCol = col + direction[1];
 
       if (
         newRow < 0 ||
