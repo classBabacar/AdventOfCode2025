@@ -12,6 +12,7 @@ input.forEach((line) => {
 });
 
 function mainLoop(grid) {
+  let badPapers = 0;
   let result;
   do {
     const positions = [];
@@ -24,10 +25,10 @@ function mainLoop(grid) {
     }
 
     [grid, result] = bfs(positions, grid);
+    badPapers += result;
   } while (result != 0); // if there was no guarantee terminal state then this would need to be changed
 
-  const removedPapers = scanArrayForBadPapers(grid);
-  console.log("Rolls of papers removed: ", removedPapers);
+  console.log("Rolls of papers removed: ", badPapers);
 }
 
 function bfs(positions, grid) {
@@ -73,22 +74,10 @@ function bfs(positions, grid) {
   while (typeof (i = positionsToBeRemoved.shift()) !== "undefined") {
     const row = i[0];
     const col = i[1];
-    grid[row][col] = "x"; // setting it to some dummy value for scanning, can also create global variable instead
+    grid[row][col] = "x"; // setting it to dummy value to mark as "visited"
   }
 
   return [grid, result];
-}
-
-function scanArrayForBadPapers(grid) {
-  let count = 0;
-  for (let row = 0; row < grid.length; row++) {
-    for (let col = 0; col < grid[row].length; col++) {
-      if (grid[row][col] === "x") {
-        count++;
-      }
-    }
-  }
-  return count;
 }
 
 mainLoop(grid);
