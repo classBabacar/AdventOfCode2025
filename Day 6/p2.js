@@ -50,6 +50,7 @@ function solveOperations(rightToLeftTable) {
   let expression;
 
   for (let row = 0; row < rightToLeftTable.length; ++row) {
+    // now all cols are same length (subtle but important detail about this problem)
     const currentRow = rightToLeftTable[row];
     num1 = rightToLeftTable[row][0];
     expression = currentRow[currentRow.length - 1];
