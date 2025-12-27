@@ -1,6 +1,6 @@
 const { input } = require("./input");
 
-let operationTable = [];
+const operationTable = [];
 input.forEach((line) => {
   const splitLine = line.split(" ");
   const tempStorage = [];
