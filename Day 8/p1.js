@@ -8,10 +8,10 @@ input.forEach((line) => {
 });
 
 function mainLoop(grid) {
-  let unionFinder = new UnionFind(grid.length);
-  let pairs = generatePairs(grid);
-  let sizeArray = getSetSizes(unionFinder, pairs);
-  let result = sizeArray.sort((a, b) => b - a);
+  const unionFinder = new UnionFind(grid.length);
+  const pairs = generatePairs(grid);
+  const sizeArray = getSetSizes(unionFinder, pairs);
+  const result = sizeArray.sort((a, b) => b - a);
   console.log(
     "Sizes of the three largest circuits:",
     result[0] * result[1] * result[2]
@@ -19,7 +19,7 @@ function mainLoop(grid) {
 }
 
 function generatePairs(grid) {
-  let pairs = [];
+  const pairs = [];
   let pair;
 
   for (let i = 0; i < grid.length; ++i) {
@@ -27,7 +27,7 @@ function generatePairs(grid) {
     for (let j = 0; j < grid.length; ++j) {
       if (i === j) continue;
 
-      let distance = calculate3DEuclideanDistance(grid[i], grid[j]);
+      const distance = calculate3DEuclideanDistance(grid[i], grid[j]);
       pair = [distance, i, j];
       pairs.push(pair);
     }
@@ -44,8 +44,8 @@ function getSetSizes(unionFinder, pairs) {
     .slice(0, pairsToGrab);
 
   for (let i = 0; i < filteredPairs.length; ++i) {
-    let set1 = filteredPairs[i][1];
-    let set2 = filteredPairs[i][2];
+    const set1 = filteredPairs[i][1];
+    const set2 = filteredPairs[i][2];
 
     unionFinder.uniteSet(set1, set2);
   }
@@ -54,7 +54,7 @@ function getSetSizes(unionFinder, pairs) {
 }
 
 function calculate3DEuclideanDistance(p1, p2) {
-  let sums =
+  const sums =
     Math.pow(p1[0] - p2[0], 2) +
     Math.pow(p1[1] - p2[1], 2) +
     Math.pow(p1[2] - p2[2], 2);
