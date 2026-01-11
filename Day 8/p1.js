@@ -40,7 +40,7 @@ function getSetSizes(unionFinder, pairs) {
   // remove duplicates, and grab first N (pairsToGrab)
   const pairsToGrab = 1000;
   const filteredPairs = pairs
-    .filter((_, index) => index % 2 === 0) // chatGPT, no clue how to do otherwise
+    .filter((_, index) => index % 2 === 0) // chatGPT, no clue how to do otherwise, maybe create new array?
     .slice(0, pairsToGrab);
 
   for (let i = 0; i < filteredPairs.length; ++i) {
